@@ -19,6 +19,12 @@
             <a href="/blogs" class="navbar-item">
                 Dashboard
             </a>
+
+            {{#if logged_in}}
+            <a href="/blogs/create" class="navbar-item">
+                Create a Post
+            </a>
+            {{/if}}
         </div>
 
         <div class="navbar-end">

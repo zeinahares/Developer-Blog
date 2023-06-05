@@ -49,18 +49,30 @@ router.get('/', withAuth, async (req, res) => {
         );
 
         // Pass serialized data and session flag into template
-
+        const userPosts = true;
         console.log(blogPosts);
-        res.render('blogs-user-all', {
+        res.render('homepage', {
             blogPosts,
             logged_in: req.session.logged_in,
             user_id: req.session.user_id,
+            userPosts,
         });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 });
+
+// to create a blog post
+router.get('/create', withAuth, async (req, res) => {
+
+    res.render('blog-create-edit', {
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id,
+    });
+
+});
+
 
 // to edit a blog post
 router.get('/:id', withAuth, async (req, res) => {
@@ -84,13 +96,4 @@ router.get('/:id', withAuth, async (req, res) => {
     }
 });
 
-// to create a blog post
-router.get('/create', withAuth, async (req, res) => {
-
-    res.render('blog-create-edit', {
-        logged_in: req.session.logged_in,
-        user_id: req.session.user_id,
-    });
-
-});
 module.exports = router;

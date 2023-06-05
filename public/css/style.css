@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 10px;
+}
+
+.comments {
+    padding: 30px;
+    width: 100%;
+}
+
+.one-comment {
+    display: flex;
+}
+
+.comment-delete {
+    height: auto;
+    margin-right: 5px;
+}
+
+.comment-body {
+    width: 100%;
+}
