@@ -3,61 +3,6 @@ const withAuth = require('../utils/withAuth');
 
 const { BlogPost, Comments, User } = require('../Models');
 
-router.get('/', async (req, res) => {
-    try {
-        // Get all blogs and JOIN with user data
-
-        const blogPostsData = await BlogPost.findAll({
-            include: [{ model: User }],
-            order: [['updatedAt', 'DESC']],
-        });
-
-        // Serialize data so the template can read it
-        const blogPosts_noComments = blogPostsData.map((post) => post.get({ plain: true }));
-
-        let commentsLength = 0;
-
-        const blogPosts = await Promise.all(
-
-            blogPosts_noComments.map(async (post) => {
-
-                const blogPostID = post.id;
-
-                const commentsData = await Comments.findAll({
-                    where: {
-
-                        blogPost_id: blogPostID,
-
-                    },
-                });
-
-                if (commentsData) {
-                    commentsLength = commentsData.length;
-                } else {
-                    commentsLength = 0;
-                }
-
-                return {
-                    ...post,
-                    commentsLength,
-                };
-
-            })
-        );
-
-        // Pass serialized data and session flag into template
-
-        console.log(blogPosts);
-        res.render('homepage', {
-            blogPosts,
-            logged_in: req.session.logged_in,
-            user_id: req.session.user_id,
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
 
 router.get('/signup', (req, res) => {
     // If the user is already logged in, redirect the request to another route
@@ -133,6 +78,61 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        // Get all blogs and JOIN with user data
+
+        const blogPostsData = await BlogPost.findAll({
+            include: [{ model: User }],
+            order: [['updatedAt', 'DESC']],
+        });
+
+        // Serialize data so the template can read it
+        const blogPosts_noComments = blogPostsData.map((post) => post.get({ plain: true }));
+
+        let commentsLength = 0;
+
+        const blogPosts = await Promise.all(
+
+            blogPosts_noComments.map(async (post) => {
+
+                const blogPostID = post.id;
+
+                const commentsData = await Comments.findAll({
+                    where: {
+
+                        blogPost_id: blogPostID,
+
+                    },
+                });
+
+                if (commentsData) {
+                    commentsLength = commentsData.length;
+                } else {
+                    commentsLength = 0;
+                }
+
+                return {
+                    ...post,
+                    commentsLength,
+                };
+
+            })
+        );
+
+        // Pass serialized data and session flag into template
+
+        console.log(blogPosts);
+        res.render('homepage', {
+            blogPosts,
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 
 module.exports = router;
