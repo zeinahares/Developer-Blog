@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { comments } = require('../../Models');
+const { Comments } = require('../../Models');
 
 
 router.post('/', async (req, res) => {
 
     try {
         // create a new comment
-        const newComment = await comments.create(req.body);
+        const newComment = await Comments.create(req.body);
         res.status(200).json(newComment);
 
     } catch (err) {
@@ -20,7 +20,7 @@ router.put('/:id', async (req, res) => {
 
     try {
         // update a comment by its `id` value
-        const updatedComment = await comments.update(
+        const updatedComment = await Comments.update(
             {
                 comment_body: req.body.comment_body,
             },
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     // delete comment by its `id` value
     try {
-        const deletedComment = await comments.destroy({
+        const deletedComment = await Comments.destroy({
             where: {
                 id: req.params.id,
             },
