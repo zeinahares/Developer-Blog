@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Has anyone tried Bulma?",
+    "body": "Looking for an alternative to Bootstrap",
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "title": "Python vs JavaScript?",
+    "body": "Battle it out in the comments!",
+    "user_id": 2
+  },
+  {
+    "id": 3,
+    "title": "Getting a degree vs working in junior dev position?",
+    "body": "Fresh out of high school and wondering what to do next.",
+    "user_id": 3
+  }
+]

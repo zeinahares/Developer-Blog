@@ -1,0 +1,23 @@
+[
+    {
+      "comment_body": "Its easy, almost exactly like Bootstrap",
+      "blogPost_id": 1,
+      "user_id": 2
+    },
+    {
+      "comment_body": "Python is the best",
+      "blogPost_id": 2,
+      "user_id": 1
+    },
+    {
+      "comment_body": "Javascript 100%",
+      "blogPost_id": 2,
+      "user_id": 3
+    },
+    {
+      "comment_body": "Tough ask kid",
+      "blogPost_id": 3,
+      "user_id": 1
+    }
+  ]
+  
