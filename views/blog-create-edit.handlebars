@@ -1,0 +1,68 @@
+<div class="container" id="blog-create">
+    <h2 class="title is-2" id="user-id" data-user-id="{{own_user_id}}">Make a post!</h2>
+    <form class="post-form">
+        <div class="field">
+            <label class="label" for="new-title">Title:</label>
+            <div class="control">
+                <input class="input" type="text" id="new-title" />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="new-body">Body:</label>
+            <div class="control">
+                <input class="textarea" type="dropdown" id="new-body" />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="new-category">Pet Category:</label>
+            <div class="select" id="new-category">
+                <select>
+                    {{#isEqual pet_category "===" "Dogs"}}
+                    <option selected>Dogs</option>
+                    <option>Cats</option>
+                    {{else}}
+                    <option>Dogs</option>
+                    <option selected>Cats</option>
+                    {{/isEqual}}
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="new-type">Post Type:</label>
+            <div class="select" id="new-type">
+                <select>
+                    {{#isEqual post_type "===" "Funny"}}
+                    <option selected>Funny</option>
+                    <option>Advice</option>
+                    {{else}}
+                    <option>Funny</option>
+                    <option selected>Advice</option>
+                    {{/isEqual}}
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file has-name">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Upload a picture
+                        </span>
+                    </span>
+                    <span class="file-name" id="new-image-url">
+                        No file uploaded
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control has-text-centered">
+                <button class="button is-primary" type="submit">Post</button>
+            </div>
+        </div>
+    </form>
+</div>

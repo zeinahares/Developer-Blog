@@ -59,6 +59,42 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/signup', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('signUp', {
+        logged_in: req.session.logged_in
+    });
+});
+
+router.get('/login', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    
+    console.log(req.session.logged_in)
+    try{
+        if (req.session.logged_in) {
+            res.redirect('/');
+            return;
+        }
+        res.render('login', {
+            logged_in: req.session.logged_in
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+router.get('/logout', (req, res) => {
+
+    res.redirect('/');
+});
+
+
 router.get('/:id', async (req, res) => {
     try {
         // Get all blogs and JOIN with user data
@@ -98,33 +134,5 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.get('/signup', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('signUp', {
-        logged_in: req.session.logged_in
-    });
-});
-
-router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('login', {
-        logged_in: req.session.logged_in
-    });
-});
-
-router.get('/logout', (req, res) => {
-
-    res.redirect('/');
-});
 
 module.exports = router;
