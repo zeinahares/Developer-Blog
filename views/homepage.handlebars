@@ -1,9 +1,11 @@
 <div class="container" id="blog-all">
     <div class="container" id="blogs">
         {{#if userPosts}}
-        <h2 class="title is-2 pt-5" id="user-id" data-user-id="{{user_id}}">My Posts</h2>
+        <h2 class="title is-2 pt-5 has-text-centered" 
+        id="user-id" data-user-id="{{user_id}}">My Posts</h2>
         {{else}}
-        <h2 class="title is-2 pt-5" id="user-id" data-user-id="{{user_id}}">All Posts</h2>
+        <h1 class="has-text-primary title is-2 pt-5 has-text-centered"
+        id="user-id" data-user-id="{{user_id}}">The Tech Blog</h1>
         {{/if}}
 
         {{#if logged_in}}
