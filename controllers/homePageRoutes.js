@@ -6,21 +6,28 @@ const { BlogPost, Comments, User } = require('../Models');
 
 router.get('/signup', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
 
-    res.render('signUp', {
-        logged_in: req.session.logged_in
-    });
+    try {
+
+        if (req.session.logged_in) {
+            res.redirect('/');
+            return;
+        }
+
+        res.render('signUp', {
+            logged_in: req.session.logged_in
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    
+
     console.log(req.session.logged_in)
-    try{
+    try {
         if (req.session.logged_in) {
             res.redirect('/');
             return;
